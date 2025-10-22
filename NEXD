@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEX Éducation - Plateforme Éducative Complète</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        /* Header amélioré */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        .logo-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: -5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            padding: 0.5rem 0;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+            border-bottom: 2px solid white;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .search-box input {
+            border: none;
+            padding: 0.5rem 1rem;
+            outline: none;
+            width: 200px;
+        }
+        
+        .search-box button {
+            background: var(--accent-color);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        
+        .admin-btn, .logout-btn {
+            background-color: var(--success-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .logout-btn {
+            background-color: var(--accent-color);
+            display: none;
+        }
+        
+        /* Bannière principale améliorée */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Section fonctionnalités */
+        .features {
+            padding: 3rem 0;
+            background: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        /* Boutons améliorés */
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #1c6ea4;
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+        }
+        
+        .btn-success:hover {
+            background-color: #219652;
+        }
+        
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Sections améliorées */
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--dark-color);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .subject-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-body h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .card-body p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .card-footer {
+            padding: 1rem 1.5rem;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-meta {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        /* Filtres améliorés */
+        .subject-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background-color: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Section nouveautés */
+        .news-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            margin: 3rem 0;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .news-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .news-date {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Section témoignages */
+        .testimonials {
+            padding: 3rem 0;
+            background: #f8f9fa;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-color);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Footer amélioré */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Modal amélioré */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .close-modal:hover {
+            color: var(--dark-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .search-box {
+                order: 3;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            .search-box input {
+                width: 100%;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                gap: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">📚</span>
+                    <div>
+                        <h1>NEX Éducation</h1>
+                        <div class="logo-subtitle">Excellence Académique</div>
+                    </div>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#sujets">Sujets BAC</a></li>
+                        <li><a href="#cours">Cours</a></li>
+                        <li><a href="#methodologie">Méthodologie</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Rechercher un sujet...">
+                        <button>🔍</button>
+                    </div>
+                    <a href="#" class="admin-btn" id="adminLink">Espace Prof</a>
+                    <button class="logout-btn" id="logoutBtn">Déconnexion</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="accueil">
+        <div class="container">
+            <h2>Votre Réussite Scolaire Commence Ici</h2>
+            <p>Plateforme éducative complète avec sujets d'examens, cours interactifs et méthodologie pour exceller au BAC</p>
+            <div class="hero-buttons">
+                <a href="#sujets" class="btn btn-large">Explorer les Sujets</a>
+                <a href="#cours" class="btn btn-secondary btn-large">Voir les Cours</a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Sujets disponibles</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Taux de réussite</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10,000+</span>
+                    <span class="stat-label">Élèves accompagnés</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Accès illimité</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Fonctionnalités -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Pourquoi Choisir NEX Éducation ?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3>Sujets Complets</h3>
+                    <p>Annales BAC complètes avec corrigés détaillés depuis 2016</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Méthodologie</h3>
+                    <p>Stratégies et techniques pour réussir chaque épreuve</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Suivi Personnalisé</h3>
+                    <p>Statistiques de progression et recommandations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Classements</h3>
+                    <p>Comparez vos résultats avec la communauté</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Sujets BAC -->
+    <section id="sujets">
+        <div class="container">
+            <h2 class="section-title">Sujets et Corrigés BAC</h2>
+            
+            <div class="subject-filter">
+                <button class="filter-btn active" data-filter="all">Toutes les séries</button>
+                <button class="filter-btn" data-filter="s">BAC S</button>
+                <button class="filter-btn" data-filter="es">BAC ES</button>
+                <button class="filter-btn" data-filter="l">BAC L</button>
+                <button class="filter-btn" data-filter="recent">Plus récents</button>
+                <button class="filter-btn" data-filter="popular">Plus populaires</button>
+            </div>
+            
+            <div class="subjects-grid" id="subjectsContainer">
+                <!-- Les sujets seront chargés dynamiquement -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-large" id="loadMore">Charger plus de sujets</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Nouveautés -->
+    <section class="news-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Nouveautés & Actualités</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-date">15 Mars 2024</div>
+                    <h3>Nouveaux sujets BAC 2024</h3>
+                    <p>Découvrez les derniers sujets de Mathématiques avec corrigés détaillés</p>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">10 Mars 2024</div>
+                    <h3>Webinaire Méthodologie</h3>
+                    <p>Apprenez les techniques pour réussir l'épreuve de Maths</p>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">5 Mars 2024</div>
+                    <h3>Concours de Résolution</h3>
+                    <p>Participez à notre concours et gagnez des prix exceptionnels</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Ils Ont Réussi Avec NEX</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"Grâce à NEX Éducation, j'ai pu améliorer ma moyenne de 3 points en mathématiques. Les corrigés détaillés m'ont beaucoup aidé !"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AM</div>
+                        <div>
+                            <strong>Ahmed Mohamed</strong>
+                            <div>BAC S - Mention Très Bien</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"La plateforme est intuitive et les ressources sont de qualité. J'ai particulièrement apprécié les méthodes de résolution."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">FD</div>
+                        <div>
+                            <strong>Fatouma Daher</strong>
+                            <div>BAC ES - Mention Bien</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"En tant que professeur, je recommande NEX à tous mes élèves. C'est un outil précieux pour la préparation au BAC."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PR</div>
+                        <div>
+                            <strong>M. Hassan</strong>
+                            <div>Professeur de Mathématiques</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer amélioré -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NEX Éducation</h3>
+                    <p>Votre partenaire pour l'excellence académique depuis 2016.</p>
+                    <div class="social-links">
+                        <a href="#">📘</a>
+                        <a href="#">📷</a>
+                        <a href="#">🐦</a>
+                        <a href="#">📹</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="#sujets">Sujets BAC</a></li>
+                        <li><a href="#cours">Cours en ligne</a></li>
+                        <li><a href="#methodologie">Méthodologie</a></li>
+                        <li><a href="#">Fiches de révision</a></li>
+                        <li><a href="#">Vidéos explicatives</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Centre d'aide</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Confidentialité</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>📧 contact@nex-education.dj</li>
+                        <li>📞 +253 21 35 40 50</li>
+                        <li>📍 Djibouti Ville, République de Djibouti</li>
+                        <li>🕒 Lun - Ven: 8h - 18h</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 NEX Éducation. Tous droits réservés. | Développé avec ❤️ pour la réussite des élèves</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Données des sujets (exemple étendu)
+        const subjectsData = [
+            {
+                id: 1,
+                title: "BAC S 2024 - Mathématiques",
+                year: 2024,
+                series: "s",
+                type: "premier-tour",
+                description: "Sujet complet avec corrigés détaillés et méthodes de résolution.",
+                exercises: ["Exercice 1 : Algèbre", "Exercice 2 : Analyse", "Exercice 3 : Géométrie"],
+                views: 1250,
+                downloads: 890,
+                rating: 4.8,
+                isNew: true
+            },
+            {
+                id: 2,
+                title: "BAC ES 2024 - Mathématiques",
+                year: 2024,
+                series: "es", 
+                type: "premier-tour",
+                description: "Épreuve adaptée avec focus sur les probabilités et statistiques.",
+                exercises: ["Exercice 1 : Graphes", "Exercice 2 : Probabilités", "Exercice 3 : Suites"],
+                views: 980,
+                downloads: 650,
+                rating: 4.6,
+                isNew: true
+            }
+        ];
+
+        // Fonction pour charger les sujets
+        function loadSubjects(filter = 'all') {
+            const container = document.getElementById('subjectsContainer');
+            container.innerHTML = '';
+
+            let filteredSubjects = [...subjectsData];
+
+            // Appliquer les filtres
+            if (filter !== 'all') {
+                if (['s', 'es', 'l'].includes(filter)) {
+                    filteredSubjects = subjectsData.filter(s => s.series === filter);
+                } else if (filter === 'recent') {
+                    filteredSubjects = subjectsData.filter(s => s.isNew);
+                } else if (filter === 'popular') {
+                    filteredSubjects = subjectsData.sort((a, b) => b.views - a.views);
+                }
+            }
+
+            filteredSubjects.forEach(subject => {
+                const card = document.createElement('div');
+                card.className = 'subject-card';
+                card.innerHTML = `
+                    ${subject.isNew ? '<div class="card-badge">Nouveau</div>' : ''}
+                    <div class="card-header">
+                        <h3>${subject.title}</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>${subject.series.toUpperCase()} - ${subject.year}</h4>
+                        <p>${subject.description}</p>
+                        <div class="card-meta">
+                            <span>👁️ ${subject.views} vues</span> • 
+                            <span>⭐ ${subject.rating}/5</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn" onclick="viewSubject(${subject.id})">Voir le sujet</button>
+                        <div class="card-meta">📥 ${subject.downloads} téléchargements</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Fonction pour voir un sujet
+        function viewSubject(id) {
+            alert(`Ouverture du sujet ${id} - Fonctionnalité à implémenter`);
+            // Ici vous intégrerez l'ouverture du modal avec le sujet
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSubjects();
+
+            // Gestion des filtres
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    loadSubjects(this.dataset.filter);
+                });
+            });
+
+            // Bouton "Charger plus"
+            document.getElementById('loadMore').addEventListener('click', function() {
+                alert('Chargement de plus de sujets - Fonctionnalité à implémenter');
+            });
+        });
+    </script>
+</body>
+</html>
